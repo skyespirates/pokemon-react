@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Home from "./Home";
 import About from "./About";
 const url = "https://pokeapi.co/api/v2/pokemon?offset=0";
 function App() {
@@ -31,20 +32,26 @@ function App() {
             placeholder="enter pokemon's name"
           />
         </div>
-        {/* <div className="flex">
-          {pokemons.map((pokemon) => (
-            <Link
-              to={`/about/${pokemon.idx}`}
-              className="border border-purple-500"
-              key={pokemon.idx}
-            >
-              {pokemon.name}
-            </Link>
-          ))}
-        </div> */}
+        <div className="flex flex-wrap my-5 space-x-2">
+          {pokemons &&
+            pokemons.map((pokemon, idx) => (
+              <Link to={`/about/${idx}`}>
+                <div
+                  key={idx}
+                  style={{ paddingTop: "0.1em", paddingBottom: "0.1rem" }}
+                  className="text-sm px-3 bg-gray-200 text-gray-800 rounded-full"
+                >
+                  {pokemon.name}
+                </div>
+              </Link>
+            ))}
+        </div>
       </div>
       <Switch>
-        <Route path="/about/:slug">
+        <Route path="/" exact="true">
+          <Home />
+        </Route>
+        <Route path="/about/:id">
           <About />
         </Route>
       </Switch>

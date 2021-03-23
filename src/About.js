@@ -2,18 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 export default function About(props) {
-  let { slug } = useParams();
-  const [pokemon, setPokemon] = useState();
-  console.log(props);
+  let { id } = useParams();
+  const [pokemon, setPokemon] = useState(null);
   useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${slug}/`)
+    fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
       .then((res) => res.json())
       .then((data) => {
+        console.log(typeof data);
         setPokemon(data);
-
-        console.log(data);
       });
-  }, [slug]);
+  }, [id]);
   return (
     <>
       {pokemon && (
