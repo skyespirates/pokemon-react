@@ -8,7 +8,6 @@ export default function About(props) {
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(typeof data);
         setPokemon(data);
       });
   }, [id]);
